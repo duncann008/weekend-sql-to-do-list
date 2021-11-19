@@ -12,7 +12,7 @@ function onReady()  {
 function clickHandlers()    {
     $('#submitTask').on('click', submitTask);
     $('tbody').on('click', '#delete-button', deleteTask);
-    $('tbody').on('click', '#check-complete', checkBox);
+    $('tbody').on('click', '#check-complete', updateTask);
 }
 
 
@@ -26,39 +26,32 @@ function renderTasks()  {
         $('#task-table').empty();
 
         for (let task of response)  {
-            // doneOrNot(task);
-            $('#task-table').append(`
-             <tr id="${task.id}">
-                 <td>${task.task}</td>
-                 <td><input type="checkbox" id="check-complete"></td>
-                 <td><button id="delete-button">Delete</button></td>
-            </tr>
-            `)
+            doneOrNot(task);
         }
     }).catch((error) => {
         console.log('error in GET', error);
     })
 }
 
-// function doneOrNot(param)   {
-//     if (param.complete === false) {
-//         $('#task-table').append(`
-//             <tr id="${param.id}">
-//                 <td>${param.task}</td>
-//                 <td><button class="checkComplete">Complete</button></td>
-//                 <td><button id="delete-button">Delete</button></td>
-//             </tr>
-//         `)
-//     }
-//     else 
-//         $('#task-table').append(`
-//             <tr id="${param.id}">
-//                 <td>${param.task}</td>
-//                 <td>✅</td>
-//                 <td><button id="delete-button">Delete</button></td>
-//             </tr>
-//         `)
-// }
+function doneOrNot(param)   {
+    if (param.complete === false) {
+        $('#task-table').append(`
+            <tr id="${param.id}">
+                <td>${param.task}</td>
+                <td><input type="checkbox" id="check-complete" value="${param.id}" data-complete="${param.complete}"></td>
+                <td><button id="delete-button">Delete</button></td>
+            </tr>
+        `)
+    }
+    else 
+        $('#task-table').append(`
+            <tr id="${param.id}">
+                <td>${param.task}</td>
+                <td><input type="checkbox" id="check-complete" value="${param.id}" data-complete="${param.complete}" checked></td>
+                <td><button id="delete-button">Delete</button></td>
+            </tr>
+        `)
+}
 
 
 function addTask(taskToAdd)  {
@@ -88,11 +81,27 @@ function submitTask()   {
     
 }
 
+function updateTask() {
+    const taskId = $(this).val();
+    const currentStatus = $(this).is(':checked');
+    
+    console.log('taskId', taskId);
+    console.log('currentStatus', currentStatus);
+    $.ajax({
+      type: 'PUT',
+      url: `/tasks/${taskId}`,
+      data: { currentStatus: currentStatus }
+    }).then((res) => {
+      //renderTasks();
+    }).catch((err) => {
+      console.error(err);
+    })
+  }
+
 
 function deleteTask()   {
     console.log(this);
+    this.closest('tr')
 }
 
-function checkBox() {
-    console.log('Checked the box');
-}
+

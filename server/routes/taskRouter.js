@@ -44,8 +44,28 @@ taskRouter.post('/', (req, res) =>  {
 });
 
 
-
-
+// PUT ROUTE
+taskRouter.put('/:id', (req, res) => {
+    const taskIdToUpdate = req.params.id;
+    const sqlText = `
+      UPDATE "tasks"
+        SET "complete" = NOT "complete"
+            WHERE "id"=$1;
+    `;
+    const sqlValues = [
+      taskIdToUpdate
+    ];
+  
+    pool.query(sqlText, sqlValues)
+      .then((dbRes) => {
+        res.sendStatus(200);
+      })
+      .catch((dbErr) => {
+        console.error(dbErr);
+        res.sendStatus(500);
+      })
+  });
+  
 
 
 
