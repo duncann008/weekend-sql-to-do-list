@@ -38,4 +38,5 @@ I need an app that allows a user to create a task and add it to the database. Th
 
 #### Step 2: Make an app that works!
 
-1. 
+1. The first step is to render the data.
+    - Add an HTML table to render our data to.
