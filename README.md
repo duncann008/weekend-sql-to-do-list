@@ -8,7 +8,7 @@ To-Do App
     - Server, Public, Scripts, Routers, Styles
 
 2. Created all the files needed for my project.
-    - HTML, CSS, JS(Server, Router, and Client), jQuery, .gitignore, Database-SQL
+    - HTML, CSS, JS(Server, Router, and Client), jQuery, .gitignore, database.sql
 
 3. Brought in the modules I'd need.
     - NPM, Express, pg
@@ -23,3 +23,4 @@ To-Do App
 5. Created a database on Postico to work with my app demands.
     - Created a table with "id", "task", and "complete".
     - Added some dummy data to better visualize and test my table while I work with it.
+    - Put the sql-query stuff into my database.sql.
