@@ -5,6 +5,43 @@ const pool = require('../modules/pool.js');
 
 
 
+// GET ROUTE
+taskRouter.get('/', (req, res) =>   {
+    console.log('GET /tasks');
+    const table = 'SELECT * FROM tasks;';
+    pool.query(table)
+        .then((dbRes) => {
+            res.send(dbRes.rows);
+        })
+        .catch((dbErr) =>   {
+            console.error(dbErr);
+            res.sendStatus(500);
+        });
+});
+
+// POST ROUTE
+taskRouter.post('/', (req, res) =>  {
+   
+    let newTask = req.body;
+
+    console.log('Adding task', newTask);
+    
+    let queryText = `INSERT INTO "tasks" ("task")
+                        VALUES ($1);`;
+
+    let queryValues = [
+        newTask.task
+    ];
+
+    pool.query(queryText, queryValues)
+        .then((result) => {
+            res.sendStatus(201);
+        })
+        .catch((error) =>   {
+            res.sendStatus(500);
+            console.log(error);
+        })
+});
 
 
 
