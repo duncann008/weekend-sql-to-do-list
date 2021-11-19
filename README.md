@@ -1,9 +1,20 @@
 # Project Name
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+To-Do App
 
-## Description
+## How I Approached My Project
 
-Your project description goes here. What problem did you solve? How did you solve it?
+1. Created the appropriate folders to store the files I will need to create.
+    - Server, Public, Scripts, Routers, Styles
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+2. Created all the files needed for my project.
+    - HTML, CSS, JS(Server, Router, and Client), jQuery, .gitignore, Database-SQL
+
+3. Brought in the modules I'd need.
+    - NPM, Express, pg
+
+4. Made sure that all of my files are working together.
+    - Brought in my jQuery file.
+    - Added boilerplate HTML to source my files.
+    - Sourced my client.js, styles.css, and jQuery.js into my index.html.
+    -
