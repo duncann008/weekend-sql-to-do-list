@@ -4,7 +4,9 @@ To-Do App
 
 I need an app that allows a user to create a task and add it to the database. Then the user should be able to alter whether or not that task has been completed.  Finally the user should have an option to delete a task.
 
-## How I Approached My Project
+## How I Approached My Project:
+
+#### Step 1: Initialization.
 
 1. Created the appropriate folders to store the files I will need to create.
     - Server, Public, Scripts, Routes, Styles, Modules
@@ -32,3 +34,8 @@ I need an app that allows a user to create a task and add it to the database. Th
     - Got my server.js up and running by requiring my router and modules.
     - Wired up pool.js.
     - Got my taskRouter.js ready for my requests and responses.
+
+
+#### Step 2: Make an app that works!
+
+1. 
