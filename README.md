@@ -50,5 +50,15 @@ I need an app that allows a user to create a task and add it to the database. Th
 2. In my mind, now is the best time to tackle user input.
     - First step is to add some html for inputs and a submit button.
     - I made a POST route that I can reference in my client.js function and will send data to my database.
-    - Lastly I made an ajax POST function.
+    - Lastly I made an ajax POST function to send that data to the database, and plugged in my GET function to refresh the data displayed on the DOM.
+
+3. At this point I will add the ability to update the database and the DOM with the "complete" status of the tasks.
+    - Made a PUT route that handles the :id parameter of whatever I click.
+    - Made a PUT function with the checkbox to show true when checked and false when unchecked for my "complete" data property.
+
+4. The last necessary functionality I had to make was the delete button.
+    - Put together a DELETE route in the taskRouter.js.
+    - Made the function for DELETE that used the data of 'id' that was assigned to the table rows.
+
+5. Time to make it pretty!
         

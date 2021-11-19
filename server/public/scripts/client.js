@@ -37,7 +37,7 @@ function renderTasks()  {
 function doneOrNot(param)   {
     if (param.complete === false) {
         $('#task-table').append(`
-            <tr id="${param.id}">
+            <tr data-id="${param.id}">
                 <td>${param.task}</td>
                 <td><input type="checkbox" class="false" id="check-complete" value="${param.id}" data-complete="${param.complete}"></td>
                 <td><button id="delete-button">Delete</button></td>
