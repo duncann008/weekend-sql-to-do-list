@@ -8,7 +8,8 @@ const pool = require('../modules/pool.js');
 // GET ROUTE
 taskRouter.get('/', (req, res) =>   {
     console.log('GET /tasks');
-    const table = 'SELECT * FROM tasks;';
+    const table = `SELECT * FROM tasks
+                    ORDER BY "complete", "task" ASC;`;
     pool.query(table)
         .then((dbRes) => {
             res.send(dbRes.rows);
@@ -64,11 +65,26 @@ taskRouter.put('/:id', (req, res) => {
         console.error(dbErr);
         res.sendStatus(500);
       })
-  });
+});
   
 
-
-
+// DELETE ROUTE
+taskRouter.delete('/:id', (req, res) =>  {
+    const taskIdToDelete = req.params.id;
+    const sqlText = `
+      DELETE FROM "tasks"
+        WHERE "id"=$1;
+    `;
+    const sqlValues = [taskIdToDelete];
+    pool.query(sqlText, sqlValues)
+      .then((dbResult) => {
+        res.sendStatus(200);
+      })
+      .catch((dbErr) => {
+        console.error(dbErr);
+        res.sendStatus(500);
+      })
+  });
 
 
 

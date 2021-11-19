@@ -13,6 +13,7 @@ function clickHandlers()    {
     $('#submitTask').on('click', submitTask);
     $('tbody').on('click', '#delete-button', deleteTask);
     $('tbody').on('click', '#check-complete', updateTask);
+    
 }
 
 
@@ -38,16 +39,16 @@ function doneOrNot(param)   {
         $('#task-table').append(`
             <tr id="${param.id}">
                 <td>${param.task}</td>
-                <td><input type="checkbox" id="check-complete" value="${param.id}" data-complete="${param.complete}"></td>
+                <td><input type="checkbox" class="false" id="check-complete" value="${param.id}" data-complete="${param.complete}"></td>
                 <td><button id="delete-button">Delete</button></td>
             </tr>
         `)
     }
     else 
         $('#task-table').append(`
-            <tr id="${param.id}">
+            <tr data-id="${param.id}">
                 <td>${param.task}</td>
-                <td><input type="checkbox" id="check-complete" value="${param.id}" data-complete="${param.complete}" checked></td>
+                <td><input type="checkbox" class="true" id="check-complete" value="${param.id}" data-complete="${param.complete}" checked></td>
                 <td><button id="delete-button">Delete</button></td>
             </tr>
         `)
@@ -79,6 +80,7 @@ function submitTask()   {
 
     addTask(taskToSubmit);
     
+    clearInput();
 }
 
 function updateTask() {
@@ -92,7 +94,7 @@ function updateTask() {
       url: `/tasks/${taskId}`,
       data: { currentStatus: currentStatus }
     }).then((res) => {
-      //renderTasks();
+      renderTasks();
     }).catch((err) => {
       console.error(err);
     })
@@ -100,8 +102,21 @@ function updateTask() {
 
 
 function deleteTask()   {
-    console.log(this);
-    this.closest('tr')
+    const taskIdToDelete = $(this).closest('tr').data('id');
+    $.ajax({
+        method: 'DELETE',
+        url: `/tasks/${taskIdToDelete}`
+    }).then((response) => {
+        console.log(response);
+        renderTasks();
+    }).catch((err) => {
+        console.error(err);
+    })
+    };
+
+
+
+function clearInput()   {
+    $('#task').val('');
+    console.log('Inputs cleared');
 }
-
-

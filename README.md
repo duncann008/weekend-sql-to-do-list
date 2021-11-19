@@ -43,10 +43,12 @@ I need an app that allows a user to create a task and add it to the database. Th
     - Create a GET route in our taskRouter.js.
     - Created an ajax GET request function.
         * During this function I decided to append my button for deleting and a checkbox for completing as well.
-        
+        * While doing that I figured I could use an IF/ELSE function to determine if a row should be checked complete.
+        * If the row's complete column was false, the box is unchecked, otherwise it appends as checked.
+        * Plugged the new function into my GET function.
 
 2. In my mind, now is the best time to tackle user input.
     - First step is to add some html for inputs and a submit button.
     - I made a POST route that I can reference in my client.js function and will send data to my database.
     - Lastly I made an ajax POST function.
-        * 
+        
