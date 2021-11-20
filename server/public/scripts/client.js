@@ -40,7 +40,7 @@ function doneOrNot(param)   {
             <tr data-id="${param.id}">
                 <td>${param.task}</td>
                 <td><input type="checkbox" class="false" id="check-complete" value="${param.id}" data-complete="${param.complete}"></td>
-                <td><button id="delete-button">Delete</button></td>
+                <td><button class="delete" id="delete-button">Delete</button></td>
             </tr>
         `)
     }
@@ -49,7 +49,7 @@ function doneOrNot(param)   {
             <tr data-id="${param.id}">
                 <td>${param.task}</td>
                 <td><input type="checkbox" class="true" id="check-complete" value="${param.id}" data-complete="${param.complete}" checked></td>
-                <td><button id="delete-button">Delete</button></td>
+                <td><button class="delete" id="delete-button">Delete</button></td>
             </tr>
         `)
 }
@@ -102,6 +102,7 @@ function updateTask() {
 
 
 function deleteTask()   {
+    //sweetAlert();
     const taskIdToDelete = $(this).closest('tr').data('id');
     $.ajax({
         method: 'DELETE',
@@ -120,3 +121,23 @@ function clearInput()   {
     $('#task').val('');
     console.log('Inputs cleared');
 }
+
+// function sweetAlert(){
+//     Swal.fire({
+//         title: 'Are you sure?',
+//         text: "You won't be able to revert this!",
+//         icon: 'warning',
+//         showCancelButton: true,
+//         confirmButtonColor: '#3085d6',
+//         cancelButtonColor: '#d33',
+//         confirmButtonText: 'Yes, delete it!'
+//     }).then((result) => {
+//         if (result.isConfirmed) {
+//         Swal.fire(
+//             'Deleted!',
+//             'Your file has been deleted.',
+//             'success'
+//         )
+//         }
+//     })
+// };

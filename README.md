@@ -61,4 +61,5 @@ I need an app that allows a user to create a task and add it to the database. Th
     - Made the function for DELETE that used the data of 'id' that was assigned to the table rows.
 
 5. Time to make it pretty!
+    - Installed Bootstrap and SweetAlert2 to learn more about using other libraries/modules while I design my app.
         
