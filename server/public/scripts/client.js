@@ -78,11 +78,17 @@ function submitTask()   {
     
     taskToSubmit.task = $('#task').val();
 
+    if ($('#task').val() === '')   {
+        alert('Maybe come up with a task first.')
+    }
+    else    {
+
     addTask(taskToSubmit);
     
     clearInput();
 
     placeholderTextChange();
+    }
 }
 
 function updateTask() {
@@ -145,12 +151,24 @@ function placeholderTextChange()  {
         'e.g. Mow the lawn.',
         'Haha, tricked you!'
     ];
-    if (i <= placeholderText.length - 1) {
+    
+    
+    if  (i <= placeholderText.length - 1 && placeholderText[i] === 'Haha, tricked you!'){
         $('#task').attr('placeholder', `${placeholderText[i]}`);
+        $("body").addClass("trick-body");
+        i++;
+        console.log('huh?');
+        
+    }
+    else if (i <= placeholderText.length - 1) {
+        $('#task').attr('placeholder', `${placeholderText[i]}`);
+        $("body").removeClass("trick-body");
         i++;
     }
     else    {
         i = 0;
+        $('#task').attr('placeholder', `${placeholderText[i]}`);
+        $("body").removeClass("trick-body");
     };
 };
 
