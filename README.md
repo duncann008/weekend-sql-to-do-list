@@ -60,6 +60,10 @@ I need an app that allows a user to create a task and add it to the database. Th
     - Put together a DELETE route in the taskRouter.js.
     - Made the function for DELETE that used the data of 'id' that was assigned to the table rows.
 
-5. Time to make it pretty!
+5. Time to make it fun!
     - Installed Bootstrap and SweetAlert2 to learn more about using other libraries/modules while I design my app.
+    - Decided to do the styling changes for the rows on checked/unchecked.
+    - Worked on margins, paddings, and fits for the page.  
+    - Added some colors.
+    - Probably spent too much time making the placeholder text aggressive.
         

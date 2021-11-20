@@ -12,16 +12,19 @@
 </head>
 <body>
     <h1>TO DO LIST:</h1>
-    <h2>
-        Enter Task:
-        <input id="task" type="text">
+    <p>Enter a task:</p>
+    <div id="inputDiv">    
+        <textarea id="task" type="text" placeholder="e.g. Mow the lawn."></textarea>
+    </div>
+    <div id="submitDiv">
         <button id="submitTask">Submit</button>
-    </h2>
+    </div>
     <table>
         <thead>
             <tr>
                 <th>Task</th>
                 <th>Complete</th>
+                <th> </th>
             </tr>
         </thead>
         <tbody id="task-table">

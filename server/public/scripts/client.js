@@ -37,7 +37,7 @@ function renderTasks()  {
 function doneOrNot(param)   {
     if (param.complete === false) {
         $('#task-table').append(`
-            <tr data-id="${param.id}">
+            <tr data-id="${param.id}" class="unchecked">
                 <td>${param.task}</td>
                 <td><input type="checkbox" class="false" id="check-complete" value="${param.id}" data-complete="${param.complete}"></td>
                 <td><button class="delete" id="delete-button">Delete</button></td>
@@ -46,9 +46,9 @@ function doneOrNot(param)   {
     }
     else 
         $('#task-table').append(`
-            <tr data-id="${param.id}">
+            <tr data-id="${param.id}" class="checked">
                 <td>${param.task}</td>
-                <td><input type="checkbox" class="true" id="check-complete" value="${param.id}" data-complete="${param.complete}" checked></td>
+                <td><input type="checkbox" class="true checked" id="check-complete" value="${param.id}" data-complete="${param.complete}" checked></td>
                 <td><button class="delete" id="delete-button">Delete</button></td>
             </tr>
         `)
@@ -81,6 +81,8 @@ function submitTask()   {
     addTask(taskToSubmit);
     
     clearInput();
+
+    placeholderTextChange();
 }
 
 function updateTask() {
@@ -103,17 +105,24 @@ function updateTask() {
 
 function deleteTask()   {
     //sweetAlert();
+    let okay = confirm("Are you sure you want to delete a task?");
+    if (okay === true)   {
     const taskIdToDelete = $(this).closest('tr').data('id');
     $.ajax({
-        method: 'DELETE',
-        url: `/tasks/${taskIdToDelete}`
-    }).then((response) => {
-        console.log(response);
-        renderTasks();
-    }).catch((err) => {
-        console.error(err);
-    })
-    };
+            method: 'DELETE',
+            url: `/tasks/${taskIdToDelete}`
+        }).then((response) => {
+            console.log(response);
+            renderTasks();
+            
+        }).catch((err) => {
+            console.error(err);
+        })
+}
+    else    {
+        return;
+    }
+};
 
 
 
@@ -121,6 +130,31 @@ function clearInput()   {
     $('#task').val('');
     console.log('Inputs cleared');
 }
+
+let i = 1;
+
+function placeholderTextChange()  {
+    
+    let placeholderText = [
+        'e.g. Mow the lawn.',
+        'e.g. Rake the yard.',
+        "Okay, that's enough.",
+        "Stop while you're ahead.",
+        "Continue at your own risk.",
+        "Wow, you really called my bluff.",
+        'e.g. Mow the lawn.',
+        'Haha, tricked you!'
+    ];
+    if (i <= placeholderText.length - 1) {
+        $('#task').attr('placeholder', `${placeholderText[i]}`);
+        i++;
+    }
+    else    {
+        i = 0;
+    };
+};
+
+
 
 // function sweetAlert(){
 //     Swal.fire({
